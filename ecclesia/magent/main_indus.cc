@@ -42,6 +42,7 @@
 #include "magent/lib/io/pci_sys.h"
 #include "magent/lib/io/smbus.h"
 #include "magent/lib/io/smbus_kernel_dev.h"
+#include "magent/lib/ipmi/ipmitool.h"
 #include "magent/main_common.h"
 #include "magent/redfish/indus/redfish_service.h"
 #include "magent/sysmodel/x86/sysmodel.h"
@@ -265,6 +266,10 @@ int main(int argc, char **argv) {
   // corresponds to dimm index.
   auto dimm_thermal =
       ReadAllDimmThermalDegrees(dimm_thermal_devices, system_model.get());
+
+  ecclesia::Ipmitool ipmi(ecclesia::ParseIpmiInterfaceOptions());
+  // Currently not being used.
+  auto frus = ipmi.GetAllFrus();
 
   auto server = ecclesia::CreateServer(absl::GetFlag(FLAGS_port));
   ecclesia::IndusRedfishService redfish_service(

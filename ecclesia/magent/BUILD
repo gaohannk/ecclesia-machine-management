@@ -14,6 +14,7 @@ cc_binary(
         "//magent/lib/io:pci_sys",
         "//magent/lib/io:smbus",
         "//magent/lib/io:smbus_kernel_dev",
+        "//magent/lib/ipmi:ipmitool",
         "//magent/redfish/indus",
         "//magent/sysmodel/x86:x86_sysmodel",
         "@com_google_absl//absl/flags:flag",
