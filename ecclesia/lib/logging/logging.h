@@ -59,6 +59,9 @@
 #ifndef ECCLESIA_LIB_LOGGING_LOGGING_H_
 #define ECCLESIA_LIB_LOGGING_LOGGING_H_
 
+#include <memory>
+#include <utility>
+
 #include "absl/strings/string_view.h"
 #include "ecclesia/lib/logging/globals.h"
 #include "ecclesia/lib/logging/interfaces.h"
@@ -108,7 +111,7 @@ inline LogMessageStream Check(bool condition, absl::string_view description,
     return GetGlobalLogger().MakeNullStream();
   } else {
     auto fatal_logger = GetGlobalLogger().MakeStream(0, loc);
-    fatal_logger << "Check (" << description << ") failed ";
+    fatal_logger << "Check failed (" << description << ") ";
     return fatal_logger;
   }
 }
