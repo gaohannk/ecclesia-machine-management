@@ -29,6 +29,13 @@ cc_binary(
         "@com_google_absl//absl/types:span",
         "@com_google_tensorflow_serving//tensorflow_serving/util/net_http/server/public:http_server_api",
     ],
+    features = [
+        "fully_static_link"
+    ],
+    linkopts = [
+        "-static-libstdc++ -l:libstdc++.a",
+        "-static-libgcc -l:libm.a"
+    ]
 )
 
 cc_library(
